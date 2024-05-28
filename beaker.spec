@@ -358,9 +358,11 @@ ln -s /dev/null %{buildroot}%{_datadir}/bkr/server/assets/site.less
 export PATH=%{buildroot}:$PATH
 %endif
 export BKR_PY3=%{with python3}
+%if %{without python3}
 make check
 %if 0%{?rhel} >= 8
 unlink %{buildroot}/nosetests-3
+%endif
 %endif
 
 %if %{without python3}
